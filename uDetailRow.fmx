@@ -1,0 +1,44 @@
+object FrameDetailRow: TFrameDetailRow
+  HitTest = False
+  Size.Width = 328.000000000000000000
+  Size.Height = 500.000000000000000000
+  Size.PlatformDefault = False
+  object DetailImage: TSkAnimatedImage
+    Align = Client
+    HitTest = True
+    Size.Width = 328.000000000000000000
+    Size.Height = 431.000000000000000000
+    Size.PlatformDefault = False
+    WrapMode = FitCrop
+  end
+  object Layout1: TLayout
+    Align = Bottom
+    Position.Y = 431.000000000000000000
+    Size.Width = 328.000000000000000000
+    Size.Height = 69.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object lblTitle: TSkLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 186.210006713867200000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      Words = <
+        item
+          Font.Weight = Bold
+          Name = 'Item 0'
+          StyledSettings = [Family, Size, FontColor]
+          Text = 'This is the title of this movie'
+        end
+        item
+          Name = 'Item 1'
+          Text = #13#10'Start: 20:00'
+        end
+        item
+          Name = 'Item 2'
+          Text = #13#10'Main room'
+        end>
+    end
+  end
+end

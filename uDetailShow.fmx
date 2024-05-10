@@ -1,0 +1,110 @@
+object FrameShowDetail: TFrameShowDetail
+  Size.Width = 494.000000000000000000
+  Size.Height = 720.000000000000000000
+  Size.PlatformDefault = False
+  object VertScrollBox1: TVertScrollBox
+    Align = Client
+    Padding.Left = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Size.Width = 494.000000000000000000
+    Size.Height = 677.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 478.000000000000000000
+    Viewport.Height = 677.000000000000000000
+    object DetailImage: TSkAnimatedImage
+      Align = MostTop
+      Position.X = 10.000000000000000000
+      Size.Width = 458.000000000000000000
+      Size.Height = 412.000000000000000000
+      Size.PlatformDefault = False
+      WrapMode = FitCrop
+    end
+    object Layout1: TLayout
+      Align = Top
+      Position.X = 10.000000000000000000
+      Position.Y = 1030.000000000000000000
+      Size.Width = 458.000000000000000000
+      Size.Height = 237.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+    object lblTitle: TSkLabel
+      Align = Top
+      Position.X = 10.000000000000000000
+      Position.Y = 412.000000000000000000
+      Size.Width = 458.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      Words = <
+        item
+          Font.Weight = Bold
+          Name = 'Item 0'
+          StyledSettings = [Family, Size, FontColor]
+          Text = 'This is the title of this movie'
+        end
+        item
+          Name = 'Item 1'
+          Text = #13#10'Start: 20:00'
+        end
+        item
+          Name = 'Item 2'
+          Text = #13#10'Main room'
+        end>
+    end
+    object SkLabel1: TSkLabel
+      Align = Top
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 479.000000000000000000
+      Size.Width = 458.000000000000000000
+      Size.Height = 551.000000000000000000
+      Size.PlatformDefault = False
+      Words = <
+        item
+          Text = 
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam p' +
+            'ulvinar ut sem eget cursus. In pretium luctus nulla, sit amet fr' +
+            'ingilla metus. Maecenas tempor, turpis eget luctus finibus, dolo' +
+            'r nisi posuere est, ut commodo turpis ipsum et ligula. Donec nec' +
+            ' velit efficitur, efficitur elit vel, facilisis tellus. Morbi at' +
+            ' nibh id dui gravida convallis a nec ante. Sed viverra, odio in ' +
+            'aliquam vehicula, tortor orci tincidunt ante, eget tincidunt neq' +
+            'ue erat et quam. Phasellus ut augue ligula. Fusce finibus a veli' +
+            't laoreet aliquam.'#13#10#13#10'Donec nec turpis nec nisi maximus rutrum. ' +
+            'Donec eget lacus lectus. Quisque pellentesque sagittis nibh sed ' +
+            'condimentum. Praesent vulputate egestas mauris at ornare. Suspen' +
+            'disse tincidunt augue et odio semper, vel vulputate nunc ferment' +
+            'um. Donec ut justo mauris. Quisque consectetur mi eu porta lacin' +
+            'ia. Phasellus rutrum porta metus, ut pretium urna porttitor quis' +
+            '. Aenean rutrum condimentum hendrerit. Vivamus mauris neque, dap' +
+            'ibus et metus sed, sodales vestibulum dolor. Donec vel tincidunt' +
+            ' eros. Aliquam volutpat neque nec erat pulvinar suscipit. Duis l' +
+            'uctus nulla ut enim consequat sodales. Quisque ut ligula sed nib' +
+            'h porta lacinia. Duis pulvinar luctus venenatis. Vestibulum in u' +
+            'ltricies nulla, a maximus eros.'#13#10#13#10'Vestibulum vulputate odio ull' +
+            'amcorper lectus sollicitudin fermentum. Ut tincidunt feugiat mol' +
+            'estie. Duis posuere interdum facilisis. Nam blandit lectus ut ar' +
+            'cu cursus, eu viverra ligula consectetur. Curabitur imperdiet au' +
+            'gue lorem. Ut vestibulum massa sodales dui elementum venenatis. ' +
+            'Aliquam aliquam neque nec tortor bibendum, quis sagittis ex impe' +
+            'rdiet. Proin ex dui, dignissim eget ipsum at, posuere porta nisl' +
+            '. Nunc vel quam cursus, venenatis enim sit amet, tristique quam.' +
+            ' Duis mi nisl, sodales eu nunc at, imperdiet fermentum augue.'
+        end>
+    end
+  end
+  object Button1: TButton
+    Align = Bottom
+    Margins.Left = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 677.000000000000000000
+    Size.Width = 474.000000000000000000
+    Size.Height = 43.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Tickets'
+    TextSettings.Trimming = None
+  end
+end
