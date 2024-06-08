@@ -3,31 +3,19 @@ unit uDetailRow;
 interface
 
 uses
-  System.SysUtils,
-  System.Types,
-  System.UITypes,
-  System.Classes,
-  System.Variants,
-  FMX.Types,
-  FMX.Graphics,
-  FMX.Controls,
-  FMX.Forms,
-  FMX.Dialogs,
-  FMX.StdCtrls,
-  System.Skia,
-  FMX.Layouts,
-  FMX.Skia;
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.Skia,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Layouts, FMX.Skia;
 
 type
   TFrameDetailRow = class(TFrame)
     DetailImage: TSkAnimatedImage;
     lblTitle: TSkLabel;
     Layout1: TLayout;
-  private
-    fImageFilename: string;
+  protected
+    FImageFilename: string;
     procedure DetailImageClick(Sender: TObject);
     procedure DetailImageTap(Sender: TObject; const Point: TPointF);
-    procedure ShowDetailFrame();
+    procedure ShowDetailFrame;
   public
     constructor Create(AOwner: TComponent); override;
     procedure Bind(ImageFilename: string);
@@ -36,55 +24,49 @@ type
 implementation
 
 uses
-  uCommon,
-  Messaging;
+  uCommon, Messaging;
 
 {$R *.fmx}
-
-{ TFrameDetail }
 
 constructor TFrameDetailRow.Create(AOwner: TComponent);
 begin
   inherited;
-  {$IF Defined(MSWindows)}
+{$IF Defined(MSWindows)}
   DetailImage.OnClick := DetailImageClick;
-  {$ELSE if Defined(IOS)}
+{$ELSE if Defined(IOS)}
   DetailImage.OnTap := DetailImageTap;
-  {$ELSE}
+{$ELSE}
   raise Exception.Create('Platform not supported');
-  {$ENDIF}
+{$ENDIF}
 end;
 
 procedure TFrameDetailRow.Bind(ImageFilename: string);
 begin
-  fImageFilename := ImageFilename;
-  if not FileExists(fImageFilename) then
-  begin
-    ShowMessage('File not exists: ' + fImageFilename);
-    Exit;
-  end;
-
-
-  DetailImage.LoadFromFile(ImageFilename);
+  FImageFilename := ImageFilename;
+  if not FileExists(FImageFilename) then
+    ShowMessage('File not exists: ' + FImageFilename)
+  else
+    DetailImage.LoadFromFile(ImageFilename);
 end;
 
 procedure TFrameDetailRow.DetailImageClick(Sender: TObject);
 begin
-  ShowDetailFrame();
+  ShowDetailFrame;
 end;
 
 procedure TFrameDetailRow.DetailImageTap(Sender: TObject; const Point: TPointF);
 begin
-  ShowDetailFrame() ;
+  ShowDetailFrame;
 end;
 
 procedure TFrameDetailRow.ShowDetailFrame();
+var
+  Value: TShowDetailMsg;
+  Msg: TMessage<TShowDetailMsg>;
 begin
-  var v:TShowDetailMsg;
-  v.ImageFilename := fImageFilename;
-  var msg := TMessage<TShowDetailMsg>.Create(v);
-  TMessageManager.DefaultManager.SendMessage(self, msg, true)
+  Value.ImageFilename := FImageFilename;
+  Msg := TMessage<TShowDetailMsg>.Create(Value);
+  TMessageManager.DefaultManager.SendMessage(Self, Msg, True);
 end;
 
 end.
-

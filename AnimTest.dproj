@@ -5,10 +5,11 @@
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Android64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>558098</TargetedPlatforms>
         <AppType>Application</AppType>
         <MainSource>AnimTest.dpr</MainSource>
+        <ProjectName Condition="'$(ProjectName)'==''">AnimTest</ProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -1561,7 +1562,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\1.jpg" Configuration="Debug" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>1.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1589,7 +1590,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\1.jpg" Configuration="Release" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>1.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1617,7 +1618,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\2.jpg" Configuration="Debug" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>2.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1645,7 +1646,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\2.jpg" Configuration="Release" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>2.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1673,7 +1674,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\3.jpg" Configuration="Debug" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>3.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1701,7 +1702,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\3.jpg" Configuration="Release" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>3.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1729,7 +1730,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\4.jpg" Configuration="Debug" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>4.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1757,7 +1758,7 @@
                 </DeployFile>
                 <DeployFile LocalName="resources\4.jpg" Configuration="Release" Class="File">
                     <Platform Name="Android64">
-                        <RemoteDir>assets\internal\</RemoteDir>
+                        <RemoteDir>\assets\internal</RemoteDir>
                         <RemoteName>4.jpg</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1805,6 +1806,12 @@
                     </Platform>
                     <Platform Name="Android64">
                         <RemoteDir>res\xml</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidGDBServer">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
