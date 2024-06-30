@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts,
   FMX.TabControl, FMX.ActnList, FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView,
   uDetailRow, uDetailShow, FMX.ListBox, FMX.Edit, FMX.EditBox, FMX.NumberBox,
-  BOComponents, FMX.Objects;
+   FMX.Platform, FMX.Objects;
 
 type
   TfrmMain = class(TForm)
@@ -33,37 +33,47 @@ type
     Rectangle1: TRectangle;
     ListBoxItem2: TListBoxItem;
     LayoutCategorySelection: TLayout;
-    btnCatPositionLeft: TBOButton;
-    btnCatPositionAsButton: TBOButton;
+    btnCatPositionLeft: TButton;
+    btnCatPositionAsButton: TButton;
     Label5: TLabel;
     liVisitorSummaryOptions: TListBoxItem;
     Layout1: TLayout;
-    BOButtonVisitorHistoryUnDocked: TBOButton;
-    BOButtonVisitorHistoryDocked: TBOButton;
+    BOButtonVisitorHistoryUnDocked: TButton;
+    BOButtonVisitorHistoryDocked: TButton;
     Label6: TLabel;
     ListBoxItemProgramView: TListBoxItem;
     Layout2: TLayout;
-    BOButtonGridView: TBOButton;
-    BOButtonListView: TBOButton;
+    BOButtonGridView: TButton;
+    BOButtonListView: TButton;
     Label7: TLabel;
     ListBoxItem3: TListBoxItem;
     nbHoursPastShow: TNumberBox;
     ListboxItemReservationPreference: TListBoxItem;
     Layout3: TLayout;
-    btnAutoSelectReservationYes: TBOButton;
-    btnAutoSelectReservationNo: TBOButton;
+    btnAutoSelectReservationYes: TButton;
+    btnAutoSelectReservationNo: TButton;
     Label3: TLabel;
     ListBoxItemPrintDefaultHorecaRetail: TListBoxItem;
     Layout4: TLayout;
-    btnPrintHorecaYes: TBOButton;
-    btnPrintHorecaNo: TBOButton;
+    btnPrintHorecaYes: TButton;
+    btnPrintHorecaNo: TButton;
     Label4: TLabel;
+    Timer1: TTimer;
+    lblFps: TLabel;
+    StyleBook1: TStyleBook;
     procedure btnPlainVBoxClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnBackClick(Sender: TObject);
     procedure btnClearListClick(Sender: TObject);
     procedure btnListboxClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+  private
+    FRenderTime: Single;
+    FFrameCount: Integer;
+    FUpdateRects: array of TRectF;
+    FTimerService: IFMXTimerService;
+    FFps: Single;
   protected const
     ItemsCount: Integer = 50;
   protected
@@ -73,6 +83,7 @@ type
     procedure FillPlain;
     procedure ShowDetail(const aImageFilename: string);
     function GetImageFolder: string;
+    procedure PaintRects(const UpdateRects: array of TRectF); override;
   public
     { Public declarations }
   end;
@@ -105,11 +116,32 @@ begin
     begin
       ShowDetail((M as TMessage<TShowDetailMsg>).Value.ImageFilename);
     end);
+
+  TPlatformServices.Current.SupportsPlatformService(IFMXTimerService, FTimerService);
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FPlainList.Free;
+end;
+
+procedure TfrmMain.PaintRects(const UpdateRects: array of TRectF);
+begin
+  var c := FTimerService.GetTick;
+  inherited;
+  FRenderTime := FRenderTime + FTimerService.GetTick - c;
+  FFrameCount := FFrameCount + 1;
+end;
+
+procedure TfrmMain.Timer1Timer(Sender: TObject);
+begin
+  if FFrameCount > 0 then
+  begin
+    FFps := 1 / (FRenderTime / FFrameCount);
+    lblFps.Text := Round(FFps).ToString + ' render time';
+    FRenderTime := 0;
+    FFrameCount := 0;
+  end;
 end;
 
 function TfrmMain.GetImageFolder: string;

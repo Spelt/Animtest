@@ -24,6 +24,8 @@ object FrameDetailRow: TFrameDetailRow
       Size.Width = 186.210006713867200000
       Size.Height = 57.000000000000000000
       Size.PlatformDefault = False
+      StyledSettings = [Family, Size, Style]
+      TextSettings.FontColor = claWhite
       Words = <
         item
           Font.Weight = Bold
